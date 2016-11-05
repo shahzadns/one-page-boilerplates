@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" data-ng-app="myApp">
 <head>
-  <meta charset="UTF-8">
-  <title>01-hello-world</title>
-
-  <!--App Dependencies-->
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <meta charset="UTF-8">
+    <title>01-hello-ng-binding</title>
+    
+    <!--App Dependencies-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
 </head>
 <body>
 
 <!--App view-->
 <div data-ng-controller="AppCtrl">
-  <h1>{{title}}!</h1>
+    <label>Title:</label>
+    <input type="text" data-ng-model="title" placeholder="Enter text here."><br>
+    <h1>Hello {{title}}!</h1>
 </div>
 
 <!--App scripts-->
@@ -23,7 +25,7 @@
   AppCtrl.$inject = ['$scope'];
 
   function AppCtrl($scope) {
-    $scope.title = 'Hello, World!';
+    $scope.title = 'World';
   }
 </script>
 <!--check out other one page boilerplates over here > https://github.com/shahzadns/one-page-boilerplates -->
