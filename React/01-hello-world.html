@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>React 01-hello-world</title>
+
+  <!--dependencies-->
+  <script src="https://npmcdn.com/react@15.3.0/dist/react.min.js"></script>
+  <script src="https://npmcdn.com/react-dom@15.3.0/dist/react-dom.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+</head>
+<body>
+
+<!--App view-->
+<div id="app">
+  <!--React app content will be displayed here-->
+</div>
+
+<!--App scripts-->
+<script type="text/babel">
+  (function(){
+
+    var App = React.createClass({
+      render: function() {
+        return (
+            <h2> Hello {this.props.name} !</h2>
+        );
+      }
+    });
+
+    //Bootstrap App
+    ReactDOM.render(<App name="React"/>, document.getElementById('app'));
+
+  })();
+</script>
+<!--check out other one page boilerplates over here > https://github.com/shahzadns/one-page-boilerplates -->
+</body>
+</html>
