@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>React 01-hello-world</title>
+
+  <!--dependencies-->
+  <script src="https://npmcdn.com/react@15.3.0/dist/react.min.js"></script>
+  <script src="https://npmcdn.com/react-dom@15.3.0/dist/react-dom.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+</head>
+<body>
+
+<!--App view-->
+<div id="app">
+  <!--React app content will be displayed here-->
+</div>
+
+<!--App scripts-->
+<script type="text/babel">
+
+  (function () {
+
+    //Todos list component
+    var Todos = React.createClass({
+      render: function () {
+        var createTodo =  function (todo) {
+          return <li key={todo.id}>{todo.text}</li>
+        };
+
+        return <ul> {this.props.todos.map(createTodo)}</ul>;
+      }
+    });
+
+    //Main App component
+    var App = React.createClass({
+      getInitialState: function () {
+        return {
+          todos: [{
+            id: 1,
+            text: 'Learn React'
+          }, {
+            id: 2,
+            text: 'Qualify for Facebook'
+          }],
+          text: ''
+        };
+      },
+      onChange: function (e) {
+        this.setState({ text: e.target.value });
+      },
+      handleSubmit: function (e) {
+
+        //prevent page from reloading
+        e.preventDefault();
+
+        //update todos
+        this.setState({
+          todos: this.state.todos.concat([{ text: this.state.text, id: Date.now() }]),
+          text: ''
+        });
+      },
+      render: function () {
+        return (
+          <div>
+            <h2>Todo List</h2>
+            <Todos todos={this.state.todos}/>
+            <form onSubmit={this.handleSubmit}>
+              <input onChange={this.onChange}
+              value={this.state.text}
+              placeholder="Enter your todo here..."/>
+              <button disabled={this.state.text.length < 3 }>Add</button>
+            </form>
+          </div>
+        );
+      }
+    });
+
+    //Bootstrap App
+    ReactDOM.render(<App/>, document.getElementById('app'));
+
+  })();
+</script>
+<!--check out other one page boilerplates over here > https://github.com/shahzadns/one-page-boilerplates -->
+</body>
+</html>
