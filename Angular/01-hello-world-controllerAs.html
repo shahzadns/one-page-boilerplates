@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>01-hello-world</title>
+
+    <!--App Dependencies-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+</head>
+<body>
+
+<!--App view-->
+<div data-ng-controller="AppCtrl as vm">
+    <h1>{{vm.title}}!</h1>
+</div>
+
+<!--App scripts-->
+<script>
+    angular.module('myApp', [])
+            .controller('AppCtrl', AppCtrl);
+
+    AppCtrl.$inject = ['$scope'];
+
+    function AppCtrl() {
+        this.title = 'Hello, World!';
+    }
+</script>
+<!--check out other one page boilerplates over here > https://github.com/shahzadns/one-page-boilerplates -->
+</body>
+</html>
