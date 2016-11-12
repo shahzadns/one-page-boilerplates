@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="myApp">
+<head>
+  <meta charset="UTF-8">
+  <title>03-todo-list-ng-repeat</title>
+
+  <!--App Dependencies-->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+
+  <style>
+    .done-true {
+      text-decoration: line-through;
+      color: grey;
+    }
+  </style>
+</head>
+<body>
+
+<!--App view-->
+<div data-ng-controller="AppCtrl as app">
+  <h1>{{app.title}}</h1>
+  <span>{{app.remaining()}} of {{app.length}} remaining</span>
+  [ <a href="" data-ng-click="app.archive()">Archive</a> ]
+
+  <ul class="unstyled">
+    <li data-ng-repeat="todo in app.todos">
+      <label class="checkbox">
+        <input type="checkbox" data-ng-model="todo.done">
+        <span class="done-{{todo.done}}">{{todo.text}}</span>
+      </label>
+    </li>
+  </ul>
+
+  <form data-ng-submit="app.addTodo()">
+    <input type="text" data-ng-model="app.todoText" size="30"
+           placeholder="Add new todo here">
+    <input type="submit" value="add">
+  </form>
+</div>
+
+<!--App scripts-->
+<script>
+  angular
+    .module('myApp', [])
+    .controller('AppCtrl', AppCtrl);
+
+  AppCtrl.$inject = [];
+
+  function AppCtrl() {
+
+    /*locals*/
+    var vm = this;
+
+    /*VM functions*/
+    vm.addTodo = addTodo;
+    vm.remaining = remaining;
+    vm.archive = archive;
+
+    /*VM properties*/
+    vm.title = "Todo";
+    vm.todos = [
+      {text: 'learn angular', done: true},
+      {text: 'build an angular app', done: false}
+    ];
+
+
+    //Add new todo.
+    function addTodo() {
+      vm.todos.push({text: vm.todoText, done: false});
+      vm.todoText = '';
+    }
+
+    //Remaining todos.
+    function remaining() {
+      var count = 0;
+
+      angular.forEach(vm.todos, function (todo) {
+        count += todo.done ? 0 : 1;
+      });
+
+      return count;
+    }
+
+    //Remove completed todos.
+    function archive() {
+      var oldTodos = vm.todos;
+      vm.todos = [];
+
+      angular.forEach(oldTodos, function (todo) {
+        if (!todo.done) vm.todos.push(todo);
+      });
+    }
+  }
+</script>
+<!--check out other one page boilerplates over here > https://github.com/shahzadns/one-page-boilerplates -->
+</body>
+</html>

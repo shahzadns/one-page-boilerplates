@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="myApp">
+<head>
+  <meta charset="UTF-8">
+  <title>04-ng-routes</title>
+
+  <!--App Dependencies-->
+
+  <!-- load bootstrap and font awesome via CDN -->
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css"/>
+
+  <!-- load angular and angular route via CDN -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+
+</head>
+<body data-ng-controller="MainCtrl as main">
+
+<!--Navigation header-->
+<header>
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Hello, {{main.title}}</a>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="#about"><i class="fa fa-shield"></i> About</a></li>
+        <li><a href="#contact"><i class="fa fa-comment"></i> Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<!--Display routes view here-->
+<div class="container" data-ng-view></div>
+
+
+<!--App scripts-->
+<script>
+  angular
+    .module('myApp', ['ngRoute'])
+    .config(config)
+    .controller('MainCtrl', MainCtrl)
+    .controller('HomeCtrl', HomeCtrl)
+    .controller('AboutCtrl', AboutCtrl)
+    .controller('ContactCtrl', ContactCtrl);
+
+  config.$inject = ['$routeProvider'];
+  MainCtrl.$inject = [];
+  AboutCtrl.$inject = [];
+  ContactCtrl.$inject = [];
+
+  // Routes configuration.
+  function config($routeProvider) {
+    $routeProvider
+
+    // route for the home page
+      .when('/', {
+        template: 'Welcome to <b>{{home.title}}</b> page.',
+        controller: 'HomeCtrl',
+        controllerAs: 'home'
+      })
+
+      // route for the about page
+      .when('/about', {
+        template: 'Welcome to <b>{{about.title}}</b> page.',
+        controller: 'AboutCtrl',
+        controllerAs: 'about'
+      })
+
+      // route for the contact page
+      .when('/contact', {
+        template: 'Welcome to <b>{{contact.title}}</b> page.',
+        controller: 'ContactCtrl',
+        controllerAs: 'contact'
+      });
+  }
+
+  //Main Controller
+  function MainCtrl() {
+
+    /*locals*/
+    var vm = this;
+
+    /*VM functions*/
+    //...
+
+    /*VM properties*/
+    vm.title = 'ng-Router!';
+  }
+
+  /*Views Controllers.*/
+  function HomeCtrl() {
+
+    /*locals*/
+    var vm = this;
+
+    /*VM functions*/
+    //...
+
+    /*VM properties*/
+    vm.title = 'Home';
+
+  }
+  function AboutCtrl() {
+
+    /*locals*/
+    var vm = this;
+
+    /*VM functions*/
+    //...
+
+    /*VM properties*/
+    vm.title = 'About';
+  }
+  function ContactCtrl() {
+
+    /*locals*/
+    var vm = this;
+
+    /*VM functions*/
+    //...
+
+    /*VM properties*/
+    vm.title = 'Contact';
+
+  }
+
+</script>
+<!--check out other one page boilerplates over here > https://github.com/shahzadns/one-page-boilerplates -->
+</body>
+</html>
