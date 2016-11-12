@@ -7,8 +7,8 @@
   <!--App Dependencies-->
 
   <!-- load bootstrap and font awesome via CDN -->
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css"/>
 
   <!-- load angular and angular route via CDN -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
@@ -18,20 +18,20 @@
 <body data-ng-controller="MainCtrl">
 
 <!--Navigation header-->
-  <header>
-    <nav class="navbar navbar-default">
-      <div class="container">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">Angular Routing</a>
-        </div>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
-          <li><a href="#about"><i class="fa fa-shield"></i> About</a></li>
-          <li><a href="#contact"><i class="fa fa-comment"></i> Contact</a></li>
-        </ul>
+<header>
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Angular Routing</a>
       </div>
-    </nav>
-  </header>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="#about"><i class="fa fa-shield"></i> About</a></li>
+        <li><a href="#contact"><i class="fa fa-comment"></i> Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
 
 <!--Display routes view here-->
 <div class="container" data-ng-view></div>
@@ -52,32 +52,38 @@
   ContactCtrl.$inject = ['$scope'];
 
   // Routes configuration.
-  function config($routeProvider){
+  function config($routeProvider) {
     $routeProvider
 
     // route for the home page
       .when('/', {
-        template : 'Welcome to <b>Home</b> page',
-        controller  : 'MainCtrl'
+        template: 'Welcome to <b>Home</b> page',
+        controller: 'MainCtrl'
       })
 
       // route for the about page
       .when('/about', {
-        template : 'Welcome to <b>About</b> page',
-        controller  : 'AboutCtrl'
+        template: 'Welcome to <b>About</b> page',
+        controller: 'AboutCtrl'
       })
 
       // route for the contact page
       .when('/contact', {
-        template : 'Welcome to <b>Contact</b> page',
-        controller  : 'ContactCtrl'
+        template: 'Welcome to <b>Contact</b> page',
+        controller: 'ContactCtrl'
       });
   }
 
-//  Views Controllers.
-  function MainCtrl($scope) { }
-  function AboutCtrl($scope) {}
-  function ContactCtrl($scope) {}
+  //  Views Controllers.
+  function MainCtrl($scope) {
+
+  }
+  function AboutCtrl($scope) {
+
+  }
+  function ContactCtrl($scope) {
+
+  }
 
 </script>
 <!--check out other one page boilerplates over here > https://github.com/shahzadns/one-page-boilerplates -->

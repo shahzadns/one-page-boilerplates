@@ -2,7 +2,7 @@
 <html lang="en" data-ng-app="myApp">
 <head>
   <meta charset="UTF-8">
-  <title>04-todo-list-ng-repeat</title>
+  <title>03-todo-list-ng-repeat</title>
 
   <!--App Dependencies-->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
@@ -51,8 +51,8 @@
     //vm locals
     $scope.title = "Todo";
     $scope.todos = [
-      {text:'learn angular', done:true},
-      {text:'build an angular app', done:false}
+      {text: 'learn angular', done: true},
+      {text: 'build an angular app', done: false}
     ];
 
     //vm functions
@@ -63,7 +63,7 @@
 
     //Add new todo.
     function addTodo() {
-      $scope.todos.push({text:$scope.todoText, done:false});
+      $scope.todos.push({text: $scope.todoText, done: false});
       $scope.todoText = '';
     }
 
@@ -71,7 +71,7 @@
     function remaining() {
       var count = 0;
 
-      angular.forEach($scope.todos, function(todo) {
+      angular.forEach($scope.todos, function (todo) {
         count += todo.done ? 0 : 1;
       });
 
@@ -83,7 +83,7 @@
       var oldTodos = $scope.todos;
       $scope.todos = [];
 
-      angular.forEach(oldTodos, function(todo) {
+      angular.forEach(oldTodos, function (todo) {
         if (!todo.done) $scope.todos.push(todo);
       });
     }
