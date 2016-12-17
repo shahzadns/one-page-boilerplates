@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vue 03-todo-list</title>
+
+  <!--dependencies-->
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+</head>
+<body>
+
+<!--App view-->
+<div id="app">
+
+  <!--to add new todo-->
+  <input type="text" v-model="todoText" placeholder="Enter todo here.">
+  <button v-on:click="addTodo">Add Todo</button>
+
+  <!--todo list-->
+  <ol>
+    <li v-bind:data-id="todo.id" v-for="todo in todos">
+      {{todo.text}}
+    </li>
+  </ol>
+</div>
+
+<!--App scripts-->
+<script>
+  (function () {
+
+    //Initializing the App
+    new Vue({
+      el: '#app',
+      data: {
+        todoText: '',
+        todos: [
+          {id: Date.now(), text: 'Learn JavaScript'},
+          {id: Date.now() + 2, text: 'Learn Vue'},
+          {id: Date.now() + 3, text: 'Build something awesome'}
+        ]
+      },
+      methods: {
+        addTodo: function () {
+
+          //add new todo item into the list
+          this.todos.push({
+            id : Date.now(),
+            text: this.todoText
+          });
+
+          //reset todo text
+          this.todoText = '';
+        }
+      }
+    });
+
+  })();
+</script>
+<!--check out other one page boilerplates over here > https://github.com/shahzadns/one-page-boilerplates -->
+</body>
+</html>
