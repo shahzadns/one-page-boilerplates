@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vue 01-hello-world</title>
+
+  <!--dependencies-->
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+</head>
+<body>
+
+<!--App view-->
+<div id="app">
+  <p>{{ message }}</p>
+</div>
+
+<!--App scripts-->
+<script>
+  (function(){
+
+    new Vue({
+      el: '#app',
+      data: {
+        message: 'Hello Vue!'
+      }
+    });
+
+  })();
+</script>
+<!--check out other one page boilerplates over here > https://github.com/shahzadns/one-page-boilerplates -->
+</body>
+</html>
