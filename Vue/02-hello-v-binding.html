@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vue 02-hello-v-binding</title>
+
+  <!--dependencies-->
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+</head>
+<body>
+
+<!--App view-->
+<div id="app">
+  <label>Title:</label>
+  <input type="text" v-model="title" placeholder="Enter text here."><br>
+  <h2>Text: {{title}}</h2>
+  <button v-on:click="alertMe">Alert Me</button>
+</div>
+
+<!--App scripts-->
+<script>
+  (function () {
+
+    new Vue({
+      el: '#app',
+      data: {
+        title: 'Vue'
+      },
+      methods: {
+        getMessage: function () {
+          return 'Hello ' + this.title + '.';
+        },
+        alertMe: function () {
+          var message = this.getMessage();
+          alert(message);
+        }
+      }
+    });
+
+  })();
+</script>
+<!--check out other one page boilerplates over here > https://github.com/shahzadns/one-page-boilerplates -->
+</body>
+</html>
