@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React 03-hello-redux</title>
+
+    <!--dependencies-->
+    <script src="https://npmcdn.com/react@15.3.0/dist/react.js"></script>
+    <script src="https://npmcdn.com/react-dom@15.3.0/dist/react-dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/3.6.0/redux.min.js"></script>
+    <!--react-redux provide React bindings for Redux.-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-redux/5.0.5/react-redux.js"></script>
+</head>
+<body>
+
+<!--App view-->
+<div id="app">
+    <!--React app content will be displayed here-->
+</div>
+
+<!--App scripts-->
+<script type="text/babel">
+
+    var createStore, Provider, connect, defaultState;
+    createStore = Redux.createStore;
+    Provider = ReactRedux.Provider;
+    connect = ReactRedux.connect;
+    defaultState = {typing: false, data: 'World'};
+
+    //presential/dumb component.
+    var Main = React.createClass({
+
+        //TODO single function for dispatching action.
+
+        //for dispatching typing event.
+        Typing: function(bool){
+            this.props.dispatch({
+                type: 'TYPING',
+                typing: bool
+            })
+        },
+
+        //for dispatching change evant.
+        changeHandler: function(e){
+            this.props.dispatch({
+                type: 'CHANGE',
+                data: e.target.value
+            })
+        },
+
+        render: function () {
+            return (
+                <div>
+                    <input
+                        onFocus={this.Typing.bind(this, true)}
+                        onBlur={this.Typing.bind(this, false)}
+                        defaultValue={this.props.data}
+                        onChange={this.changeHandler}
+                    />
+                    <div>Hello {this.props.data}</div>
+                    <div>
+                        {
+                            (function(self){
+                                if(self.props.typing){
+                                    return <small>typing...</small>;
+                                }
+                            })(this)
+                        }
+                    </div>
+
+                </div>
+            );
+        }
+
+    });
+
+    //reducer function.
+    var reducer = function(state, action) {
+        /*
+        Note: don’t mutate the orignal state.
+         */
+
+        //for default state.
+        if(!state) {
+            return defaultState;
+        }
+
+        //Object.assign to merge changed properties into the state and return new state.
+        switch(action.type) {
+            case 'TYPING':
+                return Object.assign({}, state, {typing: action.typing});
+            case 'CHANGE':
+                return Object.assign({}, state, {data: action.data})
+            default:
+                return state;
+        }
+    }
+
+    var store = createStore(reducer, defaultState);
+
+    //for first parameter of connect.
+    var mapStateToProps = function(state) {
+        return state;
+    }
+
+    //connect normally take two parameter.
+    //1)state, 2)handlers, if you omit second parameter connect will pass dispatch as a props.
+
+    //container/smart component.
+    const App = connect(mapStateToProps)(Main);
+
+    //Bootstrap App
+    ReactDOM.render(
+        <Provider store={store}>
+            <App />
+        </Provider>,
+        document.getElementById('app')
+    );
+
+</script>
+</body>
+</html>
